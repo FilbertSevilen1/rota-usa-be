@@ -12,8 +12,6 @@ function urlRequestLogger (req, res, next) {
     next()
 }
 
-app.use(express.static('public'))
-
 // config middleware
 app.use(express.json())
 app.use(cors()) //yg dikasih liat apa aja
