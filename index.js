@@ -32,6 +32,7 @@ app.get('/', (req, res) => res.status(200).send('<h1>Welcome to My RESTAPIs</h1>
 const routers = require('./routers')
 app.use('/api/car', routers.car_routers)
 app.use('/api/brand', routers.brand_routers)
+app.use('/api/wheel', routers.wheel_routers)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`API is running at port : ${PORT}.`))
