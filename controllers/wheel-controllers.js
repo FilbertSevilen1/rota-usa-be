@@ -18,7 +18,7 @@ module.exports.getAllWheels = async(req,res) =>{
 
                 for(let k=0;k<OFFSET.length;k++){
                     const GET_BOLT = "SELECT * FROM bolts WHERE offset_id = ?"
-                    const [BOLT] = await database.execute(GET_BOLT, [OFFSET[j].offset_id]);
+                    const [BOLT] = await database.execute(GET_BOLT, [OFFSET[k].offset_id]);
                     OFFSET[k] = {
                         ...OFFSET[k],
                         bolt_details:BOLT
@@ -37,9 +37,6 @@ module.exports.getAllWheels = async(req,res) =>{
                 size_details:SIZES,
             }
         }
-
-
-
         res.status(200).send(WHEELS)
     }
     catch(error){
@@ -87,9 +84,6 @@ module.exports.getWheelById = async(req,res) =>{
                 size_details:SIZES,
             }
         }
-
-
-
         res.status(200).send(WHEELS)
     }
     catch(error){
