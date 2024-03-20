@@ -58,6 +58,8 @@ module.exports.getWheelById = async(req,res) =>{
             const GET_SIZES = "SELECT * FROM sizes WHERE wheel_id = ?"
             const [SIZES] = await database.execute(GET_SIZES, [WHEELS[i].wheel_id]);
 
+            console.log(SIZES)
+
             for(let j=0;j<SIZES.length;j++){
                 const GET_OFFSET = "SELECT * FROM offsets WHERE size_id = ?"
                 const [OFFSET] = await database.execute(GET_OFFSET, [SIZES[j].size_id]);
