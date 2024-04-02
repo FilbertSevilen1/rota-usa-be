@@ -3,10 +3,16 @@ const bcrypt = require("bcrypt");
 
 module.exports.getAllWheels = async(req,res) =>{
     try{
-        const GET_ALL_WHEELS = "SELECT * FROM wheels"
+        const name = req.query._name || ""
+        const filter = req.query._filter || ""
+        const sort = req.query._sort || ""
+
+        console.log(name)
+
+        const GET_ALL_WHEELS = `SELECT * FROM wheels WHERE wheel_name LIKE '%${name}%' && is_active = 1 ORDER BY wheel_name`
         let [WHEELS] = await database.execute(GET_ALL_WHEELS)
         for(let i=0;i<WHEELS.length;i++){
-            const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ?"
+            const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ? && is_active = 1"
             const [DETAILS] = await database.execute(GET_WHEELS_DETAILS, [WHEELS[i].wheel_id]);
 
             const GET_SIZES = "SELECT * FROM sizes WHERE wheel_id = ?"
@@ -49,10 +55,10 @@ module.exports.getWheelById = async(req,res) =>{
     const body = req.body
     try{
         console.log(body)
-        const GET_ALL_WHEELS = "SELECT * FROM wheels WHERE wheel_id = ?"
+        const GET_ALL_WHEELS = "SELECT * FROM wheels WHERE wheel_id = ? && is_active = 1 ORDER BY wheel_name"
         let [WHEELS] = await database.execute(GET_ALL_WHEELS, [body.wheel_id])
         for(let i=0;i<WHEELS.length;i++){
-            const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ?"
+            const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ? && is_active = 1"
             const [DETAILS] = await database.execute(GET_WHEELS_DETAILS, [WHEELS[i].wheel_id]);
 
             const GET_SIZES = "SELECT * FROM sizes WHERE wheel_id = ?"
