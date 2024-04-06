@@ -38,7 +38,7 @@ module.exports.getAllWheels = async(req,res) =>{
             // }
 
             WHEELS[i] = {
-                // ...WHEELS[i],
+                ...WHEELS[i],
                 wheel_details:DETAILS,
                 // size_details:SIZES,
             }
