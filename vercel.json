@@ -23,5 +23,11 @@
             "src": "/(.+)",
             "dest": "public/$1"
         }
-    ]
+    ],
+    "functions": {
+    "app/**": {
+        "memory": 3008,
+        "maxDuration": 300
+    }
+    }
 }
