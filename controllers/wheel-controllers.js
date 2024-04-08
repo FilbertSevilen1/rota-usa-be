@@ -11,15 +11,15 @@ module.exports.getAllWheels = async(req,res) =>{
 
         const GET_ALL_WHEELS = `SELECT * FROM wheels WHERE wheel_name LIKE '%${name}%' && is_active = 1 ORDER BY wheel_name`
         let [WHEELS] = await database.execute(GET_ALL_WHEELS)
-        for(let i=0;i<WHEELS.length;i++){
-            const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ? && is_active = 1"
-            const [DETAILS] = await database.execute(GET_WHEELS_DETAILS, [WHEELS[i].wheel_id]);
+        // for(let i=0;i<WHEELS.length;i++){
+        //     const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ? && is_active = 1"
+        //     const [DETAILS] = await database.execute(GET_WHEELS_DETAILS, [WHEELS[i].wheel_id]);
 
-            WHEELS[i] = {
-                ...WHEELS[i],
-                wheel_details:DETAILS,
-            }
-        }
+        //     WHEELS[i] = {
+        //         ...WHEELS[i],
+        //         wheel_details:DETAILS,
+        //     }
+        // }
         res.status(200).send(WHEELS)
     }
     catch(error){
