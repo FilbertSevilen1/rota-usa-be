@@ -32,7 +32,8 @@ module.exports.getWheelById = async(req,res) =>{
     const body = req.body
     try{
         console.log(body)
-        const GET_ALL_WHEELS = "SELECT * FROM wheels WHERE wheel_id = ? && is_active = 1 ORDER BY wheel_name"
+        // const GET_ALL_WHEELS = "SELECT * FROM wheels WHERE wheel_id = ? && is_active = 1 ORDER BY wheel_name"
+        const GET_ALL_WHEELS = "SELECT * FROM wheels WHERE is_active = 1 ORDER BY wheel_name"
         let [WHEELS] = await database.execute(GET_ALL_WHEELS, [body.wheel_id])
         for(let i=0;i<WHEELS.length;i++){
             const GET_WHEELS_DETAILS = "SELECT * FROM wheels_details WHERE wheel_id = ? && is_active = 1"

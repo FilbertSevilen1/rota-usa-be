@@ -33,6 +33,11 @@ module.exports.getAllCarsImage = async(req,res) =>{
             CARS[i] = {...CARS[i],
                 car_details:images
             }
+
+            CARS[i] = {...CARS[i],
+                car_image:CARS_DETAILS,
+                car_details:CARS_DETAILS
+            }
             console.log(CARS[i])
         }
 
